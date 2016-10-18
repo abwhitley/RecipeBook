@@ -13,11 +13,6 @@ public class IngredientsViewController: UIViewController {
     var ingredients = Ingredients(ingredientList: [])
     var store = RecipeStore()
     
-    public func arrayToString() -> String{
-        let ingredientToSend = ingredients.ingredientList.joined(separator: "%2C")
-        return ingredientToSend
-    }
-    
     
     @IBAction func chickenButton(_ sender: AnyObject) {
         ingredients.ingredientList.append("chicken")
@@ -78,58 +73,23 @@ public class IngredientsViewController: UIViewController {
     
     @IBAction func doneButton(_ sender: AnyObject) {
         print("Your Ingredient List Contains: \(ingredients.ingredientList.joined(separator: ", "))")
-        var ingredientString = arrayToString()
-        let session = URLSession.shared
+                store.fetchRecipes(ingredientList: ingredients.ingredientList) {
+                    (RecipeResult) -> Void in
         
-        var api = SpoonacularAPI()
+                    switch RecipeResult {
+                    case let .success(RecipeResult):
+                        print("Successfully found \(RecipeResult.count) recipes.")
+                        for recipe in RecipeResult{
+                            print(recipe.id, recipe.title)
+                        }
         
-        
-        let url: URL = api.spoonacularURL(method: .findByIngredient).appendingPathComponent(ingredientString)
-        var urlrequest: URLRequest = URLRequest.init(url: url)
-        urlrequest.httpMethod = "GET"
-        urlrequest.addValue(getAPIKey(), forHTTPHeaderField: "X-Mashape-Key")
-        urlrequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        do{
-                let task = session.dataTask(with: urlrequest)  { (data: Data?, response: URLResponse?, error: Error?) in
-                
-                
-                if data != nil {
-                    
-                    let jsonData = try! JSONSerialization.jsonObject(with: data!, options: []) as! [[String: AnyObject]]
-                    
-                    let recipeData = try! jsonData
-                    
-                    print("🔥🔥🔥\n\n\n\n We got \(data)\n\n\n\n🔥🔥🔥")
-                    print("🔥🔥🔥\n\n\n\n ID is \(recipeData)🔥🔥🔥")
+                    case let .failure(error):
+                        print("Error fetching recipes: \(error)")
+                    }
                     
                 }
-                
-            }
-            task.resume()
-        }catch{
-            print("🔥🔥🔥somthing went wrong🔥🔥🔥")
-        }
         
         
-        
-//        store.fetchRecipes() {
-//            (RecipeResult) -> Void in
-//            
-//            switch RecipeResult {
-//            case let .success(RecipeResult):
-//                print("Successfully found \(RecipeResult.count) recipes.")
-//                for recipe in RecipeResult{
-//                    print(recipe.id, recipe.title)
-//                }
-//                
-//            case let .failure(error):
-//                print("Error fetching recipes: \(error)")
-//            }
-//            
-//        }
-
-
     }
 }
 

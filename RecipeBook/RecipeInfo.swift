@@ -10,6 +10,5 @@ import Foundation
 
 class RecipeInfo {
     func getRecipeInstructions(id: Int) {
-        
     }
 }

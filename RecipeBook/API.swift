@@ -61,45 +61,57 @@ public func createAnalyzedRecipeInstructionMethod(id: Int) -> String  {
 
 class SpoonacularAPI {
     
-     func spoonacularURL(method: Method) -> URL {
-        let baseURLString = getBaseURL()
-        let apiKey = getAPIKey()
-        let x = IngredientsViewController()
-        var components = URLComponents(string : baseURLString + Method.findByIngredient.rawValue)!
+    
+    public static func arrayToString(_ input: [String]) -> String{
+        
+        let ingredientToSend = input.joined(separator: ",")
+       return ingredientToSend
+        
+    }
+    
+    static func createEndpoint(method: Method) -> String{
+        let baseURL = getBaseURL()
+        let endpoint =  baseURL + Method.findByIngredient.rawValue
+        return endpoint
+    }
+    
+    static func request(input: [String]) -> URL {
+        let urlWithEndpoint = createEndpoint(method: .findByIngredient)
+        var components = URLComponents (string :urlWithEndpoint)!
         var queryItems = [URLQueryItem]()
-        let paramInfo = ["ingredients": x.arrayToString(),
-                         "X-Mashape-Key": apiKey]
+        let paramInfo = ["ingredients": arrayToString(input)]
         for (key, value) in paramInfo{
             let item = URLQueryItem(name: key, value: value)
             queryItems.append(item)
         }
         components.queryItems = queryItems
         return components.url!
+        
     }
     
-    class func recipeFromJSONData(_ data: Data) -> RecipeResult {
+    class func recipesFromJSONData(_ data: Data) -> RecipeResult {
         do {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: [])
             guard let
                 jsonDictionary = jsonObject as? [String: AnyObject],
-                let recipeArray = jsonDictionary["results"] as? [[String:AnyObject]] else{
+                let recipesArray = jsonDictionary["results"] as? [[String:AnyObject]] else{
                     // The JSON structure doesn't match our expectations
                     return .failure(SpoonacularError.invalidJSONData)
             }
             //
-            var finalRecipe = [Recipe]()
-            for recipeJSON in recipeArray {
+            var finalRecipes = [Recipe]()
+            for recipeJSON in recipesArray {
                 if let recipe = recipeFromJSONObject(recipeJSON) {
-                    finalRecipe.append(recipe)
+                    finalRecipes.append(recipe)
                 }
             }
             
-            if finalRecipe.count == 0  {
+            if finalRecipes.count == 0 && recipesArray.count > 0 {
                 // We weren't able to parse any of the photos.
                 // Maybe the JSON format for photos has changed.
                 return .failure(SpoonacularError.invalidJSONData)
             }
-            return .success(finalRecipe)
+            return .success(finalRecipes)
         }
         catch let error {
             return .failure(error)
@@ -111,18 +123,20 @@ class SpoonacularAPI {
         guard let
             id = json["id"] as? Int,
             let title = json["title"] as? String,
-            let image = json["image"] as? String,
+            let image = json["imgae"] as? String,
             let imageType = json["imageType"] as? String,
             let usedIngredientCount = json["usedIngredientCount"] as? Int,
             let missedIngredientCount = json["missedIngredientCount"] as? Int,
             let likes = json["likes"] as? Int else{
                 
-                // Don't have enough information to construct a User
+                // Don't have enough information to construct a City
                 return nil
         }
         
-        return Recipe(id: id, title: title, image: image, imageType: imageType, usedIngredientCount : usedIngredientCount, missedIngredientCount: missedIngredientCount, likes:likes)
+        return Recipe(id: id, title: title, image: image, imageType: imageType, usedIngredientCount: usedIngredientCount, missedIngredientCount: missedIngredientCount, likes: likes)
     }
+
+
 }
 
 
