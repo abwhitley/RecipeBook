@@ -91,22 +91,18 @@ class SpoonacularAPI {
     
     class func recipesFromJSONData(_ data: Data) -> RecipeResult {
         do {
-            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: [])
-            guard let
-                jsonDictionary = jsonObject as? [String: AnyObject],
-                let recipesArray = jsonDictionary["results"] as? [[String:AnyObject]] else{
-                    // The JSON structure doesn't match our expectations
-                    return .failure(SpoonacularError.invalidJSONData)
-            }
-            //
+            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: []) 
+
+            var jsonDictionary = jsonObject as? [[String: AnyObject]]
+            
             var finalRecipes = [Recipe]()
-            for recipeJSON in recipesArray {
+            for recipeJSON in jsonDictionary! {
                 if let recipe = recipeFromJSONObject(recipeJSON) {
                     finalRecipes.append(recipe)
                 }
             }
             
-            if finalRecipes.count == 0 && recipesArray.count > 0 {
+            if finalRecipes.count == 0  {
                 // We weren't able to parse any of the photos.
                 // Maybe the JSON format for photos has changed.
                 return .failure(SpoonacularError.invalidJSONData)
@@ -123,7 +119,7 @@ class SpoonacularAPI {
         guard let
             id = json["id"] as? Int,
             let title = json["title"] as? String,
-            let image = json["imgae"] as? String,
+            let image = json["image"] as? String,
             let imageType = json["imageType"] as? String,
             let usedIngredientCount = json["usedIngredientCount"] as? Int,
             let missedIngredientCount = json["missedIngredientCount"] as? Int,

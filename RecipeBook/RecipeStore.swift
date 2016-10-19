@@ -8,9 +8,14 @@
 
 import UIKit
 
+
 //MARK: Class RecipeStore
-class RecipeStore {
+public class RecipeStore {
+    var recipes: [Recipe] = []
+
     
+    public  var idArray : [AnyObject] = []
+    public  var titleArray : [AnyObject] = []
     let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration:config)
@@ -27,7 +32,6 @@ class RecipeStore {
     
      //Fuction for URL Request
     func fetchRecipes(ingredientList: [String], completion: @escaping (RecipeResult) -> Void) {
-        let x = SpoonacularAPI()
         let url = SpoonacularAPI.request(input: ingredientList)
         var urlrequest = URLRequest(url: url as URL)
         urlrequest.httpMethod = "GET"
@@ -39,18 +43,27 @@ class RecipeStore {
             
             let result = self.processRecipeRequest(data: data, error: error as NSError?)
             completion(result)
-            if data != nil {
-                
-                let jsonData = try! JSONSerialization.jsonObject(with: data!, options: []) as! [[String: AnyObject]]
-                
-                let recipeData = try! jsonData[0] as! [String: AnyObject]
-                
-                print("🔥🔥🔥\n We got Recipes Bitches\n🔥🔥🔥")
-                print("🔥🔥🔥\n\n\n\n ID is \(recipeData)🔥🔥🔥")
-                                    
-            }
-
+            
         })
         task.resume()
     }
+    
+    func fetchTitleForRecipe(_ recipe: Recipe) -> String{
+        
+        let recipeTitle = recipe.title
+        return recipeTitle
+        
+    }
+    
+
+    
+    public  func returnIDArray() -> [AnyObject] {
+        print("\(idArray)")
+        return idArray
+    }
+    public func returnTitleArray() -> [AnyObject]{
+        print("\(titleArray)")
+        return titleArray
+    }
+    
 }

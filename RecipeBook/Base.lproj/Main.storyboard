@@ -9,7 +9,7 @@
         <!--Ingredients View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="IngredientsViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IngredientsViewController" id="BYZ-38-t0r" customClass="IngredientsViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -232,22 +232,46 @@
             </objects>
             <point key="canvasLocation" x="-9" y="72"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Ingredients Table View Controller-->
         <scene sceneID="pmf-b5-9mn">
             <objects>
-                <tableViewController id="9ct-fR-HD4" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="IngredientsTableViewController" id="9ct-fR-HD4" customClass="IngredientsTableViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ho5-iT-Zf0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="54Q-G9-FyS">
+                            <rect key="frame" x="0.0" y="72" width="375" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="S54-oV-KzV">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" textLabel="2FN-md-UOh" detailTextLabel="ojs-IH-4Dk" style="IBUITableViewCellStyleValue1" id="S54-oV-KzV" customClass="RecipeCell" customModule="RecipeBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S54-oV-KzV" id="xGf-55-G6m">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2FN-md-UOh">
+                                            <frame key="frameInset" minX="15" minY="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ojs-IH-4Dk">
+                                            <frame key="frameInset" minX="316" minY="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="spinner" destination="54Q-G9-FyS" id="uZX-4A-zmY"/>
+                                    <outlet property="titleLabel" destination="2FN-md-UOh" id="tlm-cr-mqD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -255,10 +279,11 @@
                             <outlet property="delegate" destination="9ct-fR-HD4" id="gVR-lW-YYW"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="hXT-Iu-BF7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbW-Hh-Axw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="72"/>
+            <point key="canvasLocation" x="838" y="86"/>
         </scene>
     </scenes>
 </document>
