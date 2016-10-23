@@ -36,6 +36,11 @@ enum RecipeResult {
     
 }
 
+enum AnalyzedRecipeResult{
+    case success([Steps])
+    case failure(Error)
+}
+
 public func getBaseURL() -> String {
     let baseURLConfig = SpoonacularAPIConfiguration()
     let baseURL = baseURLConfig.baseURL
@@ -53,12 +58,6 @@ public func createRecipeInformationMethod(id: Int) -> String {
     return method
 }
 
-public func createAnalyzedRecipeInstructionMethod(id: Int) -> String  {
-    let method = "/recipes/{\(id)}/analyzedInstructions"
-    return method
-}
-
-
 class SpoonacularAPI {
     
     
@@ -75,6 +74,13 @@ class SpoonacularAPI {
         return endpoint
     }
     
+    public static func createAnalyzedRecipeInstructionMethod(id: Int) -> String  {
+        let baseURL = getBaseURL()
+        let method = "/recipes/\(id)/analyzedInstructions"
+        let url = baseURL + method
+        return url
+    }
+    
     static func request(input: [String]) -> URL {
         let urlWithEndpoint = createEndpoint(method: .findByIngredient)
         var components = URLComponents (string :urlWithEndpoint)!
@@ -86,12 +92,54 @@ class SpoonacularAPI {
         }
         components.queryItems = queryItems
         return components.url!
-        
+    }
+    static func requestAnalyzedRecipeIntruction(id: Int) -> URL {
+        let urlWithEndpoint = createAnalyzedRecipeInstructionMethod(id: id)
+        var components = URLComponents(string: urlWithEndpoint)!
+        return components.url!
+    }
+    
+    
+    class func analyzedRecipeFromJSONData(_ data: Data) -> AnalyzedRecipeResult {
+        do{
+            let jsonObject : Any = try JSONSerialization.jsonObject(with: data, options: [])
+            
+            let jsonDictionary = jsonObject as? [[String: AnyObject]]
+            var finalSteps = [Steps]()
+            for stepsJSON in jsonDictionary!{
+                for (key, value) in stepsJSON{
+                    if key == "steps"{
+                        let array = value as! [AnyObject]
+                        for int in array{
+                            if let step = stepFromJSONObject(int as! [String : AnyObject]){
+                                finalSteps.append(step)
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            if finalSteps.count == 0{
+                return .failure(SpoonacularError.invalidJSONData)
+            }
+            return .success(finalSteps)
+        }
+        catch let error {
+            return .failure(error)
+        }
+    }
+    
+    class func stepFromJSONObject(_ json: [String:AnyObject]) -> Steps?{
+        guard let
+        step = json["step"] as? String else{
+                return nil
+        }
+        return Steps(step:step)
     }
     
     class func recipesFromJSONData(_ data: Data) -> RecipeResult {
         do {
-            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: []) 
+            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: [])
 
             var jsonDictionary = jsonObject as? [[String: AnyObject]]
             

@@ -11,6 +11,10 @@ import UIKit
 class IngredientsTableViewController: UITableViewController {
     var recipes: [Recipe] = []
     var store: RecipeStore!
+    var instructionStore : InstructionStore!
+    var steps: [Steps] = []
+    var recipeTitle : String = ""
+    
 
     
     override func viewDidLoad() {
@@ -44,9 +48,40 @@ class IngredientsTableViewController: UITableViewController {
         let recipe = recipes[(indexPath as NSIndexPath).row]
         
         cell.titleLabel.text = recipe.title
-
+        
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        for recipe in recipes{
+            if recipe.title == tableView.cellForRow(at: indexPath)?.textLabel?.text{
+                var id = recipe.id
+                instructionStore.fetchInstructions(id: id){
+                    (AnalyzedInstructionResult) -> Void in
+                    switch AnalyzedInstructionResult{
+                    case let .success(AnalyzedInstructionResult):
+                        print("Successfully found \(AnalyzedInstructionResult.count) recipes.")
+                        for step in AnalyzedInstructionResult{
+                            self.steps.append(step)
+                            print(step.step)
+                        }
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let recipeInstructionViewController = storyboard.instantiateViewController(withIdentifier: "InstructionTableViewController") as! InstuctionTableViewController
+                        recipeInstructionViewController.steps = self.steps
+                        self.show(recipeInstructionViewController, sender: self)
+                    case let .failure(error):
+                        print("Error fetching steps: \(error)")
+
+                    }
+                }
+            }else {
+                print("🔥🔥🔥Not The Recipe You Are Looking For🔥🔥🔥")
+            }
+            print("🔥🔥🔥Finished IF Statement🔥🔥🔥")
+        }
+        print("🔥🔥🔥\(tableView.cellForRow(at: indexPath)?.textLabel?.text)🔥🔥🔥")
+    
     }
     
 }

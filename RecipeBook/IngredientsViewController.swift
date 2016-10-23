@@ -71,32 +71,34 @@ public class IngredientsViewController: UIViewController {
     }
     
     
-
+    
     @IBAction func doneButton(_ sender: AnyObject) {
         print("Your Ingredient List Contains: \(ingredients.ingredientList.joined(separator: ", "))")
-                store.fetchRecipes(ingredientList: ingredients.ingredientList) {
-                    (RecipeResult) -> Void in
-                    
-                    
-                       switch RecipeResult {
-                        case let .success(RecipeResult):
-                            print("Successfully found \(RecipeResult.count) recipes.")
-                            for recipe in RecipeResult{
-                                self.recipes.append(recipe)
-                                print(recipe.id, recipe.title)
-                            }
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let tableViewController = storyboard.instantiateViewController(withIdentifier: "IngredientsTableViewController") as! IngredientsTableViewController
-                            tableViewController.recipes = self.recipes
-                            tableViewController.store = self.store
-                            self.show(tableViewController, sender: self)
-                        case let .failure(error):
-                            print("Error fetching recipes: \(error)")
-                        }
-
-                    
-                    
+        store.fetchRecipes(ingredientList: ingredients.ingredientList) {
+            (RecipeResult) -> Void in
+            
+            OperationQueue.main.addOperation {
+                
+                switch RecipeResult {
+                case let .success(RecipeResult):
+                    print("Successfully found \(RecipeResult.count) recipes.")
+                    for recipe in RecipeResult{
+                        self.recipes.append(recipe)
+                        print(recipe.id, recipe.title)
+                    }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tableViewController = storyboard.instantiateViewController(withIdentifier: "IngredientsTableViewController") as! IngredientsTableViewController
+                    tableViewController.recipes = self.recipes
+                    tableViewController.store = self.store
+                    tableViewController.instructionStore = InstructionStore()
+                    self.show(tableViewController, sender: self)
+                case let .failure(error):
+                    print("Error fetching recipes: \(error)")
                 }
+                
+            }
+            
+        }
         
     }
     
@@ -104,7 +106,7 @@ public class IngredientsViewController: UIViewController {
 
 
 
-    
+
 
 
 
