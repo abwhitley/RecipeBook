@@ -43,19 +43,35 @@ enum TypesOfIngredient{
         case butter = "Butter"
         case yogurt = "Yogurt"
     }
-    enum StapleFoods : String{
+    enum StapleFood : String{
         case rice = "Rice"
         case bread = "Bread"
         case pasta = "Pasta"
         case beans = "Beans"
         case potatoe = "Potatoe"
     }
+
 }
 
 class Ingredients {
-    var ingredientList : [String]
+    var meats : [TypesOfIngredient.Meat.RawValue]
+    var seafood : [TypesOfIngredient.Seafood.RawValue]
+    var fruit : [TypesOfIngredient.Fruit.RawValue]
+    var vegetable : [TypesOfIngredient.Vegetable.RawValue]
+    var dairyProduct : [TypesOfIngredient.DairyProduct.RawValue]
+    var stapleFood : [TypesOfIngredient.StapleFood.RawValue]
     
-    init (ingredientList : [String]){
-        self.ingredientList = ingredientList
+    init (meats : [TypesOfIngredient.Meat.RawValue],
+          seafood : [TypesOfIngredient.Seafood.RawValue],
+          fruit : [TypesOfIngredient.Fruit.RawValue],
+          vegetable : [TypesOfIngredient.Vegetable.RawValue],
+          dairyProduct : [TypesOfIngredient.DairyProduct.RawValue],
+          stapleFood : [TypesOfIngredient.StapleFood.RawValue]){
+        self.meats = meats
+        self.seafood = seafood
+        self.fruit = fruit
+        self.vegetable = vegetable
+        self.dairyProduct = dairyProduct
+        self.stapleFood = stapleFood
     }
 }
