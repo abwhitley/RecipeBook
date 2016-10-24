@@ -15,15 +15,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="jdU-8k-zaG" style="IBUITableViewCellStyleDefault" id="bR9-vF-obl" customClass="IngredientCell" customModule="RecipeBook" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="RtA-yE-jIC" style="IBUITableViewCellStyleDefault" id="bR9-vF-obl" customClass="IngredientCell" customModule="RecipeBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bR9-vF-obl" id="dTC-9U-AMC">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jdU-8k-zaG">
-                                            <frame key="frameInset" minX="15" width="345" height="43.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtA-yE-jIC">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -31,6 +31,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ingredientLabel" destination="RtA-yE-jIC" id="9eC-Y0-jEa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -58,263 +61,42 @@
             </objects>
             <point key="canvasLocation" x="103" y="90"/>
         </scene>
-        <!--Ingredients View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="IngredientsViewController" id="BYZ-38-t0r" customClass="IngredientsViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hP7-dU-a6F">
-                                <frame key="frameInset" minX="16" minY="28" width="180" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Meats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfi-1x-Iqc">
-                                        <frame key="frameInset" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tZZ-31-WAz">
-                                        <frame key="frameInset" minY="20" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fy3-25-m9u">
-                                                <frame key="frameInset" width="109" height="30"/>
-                                                <state key="normal" title="Chicken"/>
-                                                <connections>
-                                                    <action selector="chickenButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l6o-Cg-JA8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnc-oR-C7z">
-                                                <frame key="frameInset" minX="109" width="39" height="30"/>
-                                                <state key="normal" title="Steak"/>
-                                                <connections>
-                                                    <action selector="steakButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D0h-9h-hzz"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtO-lZ-rTb">
-                                                <frame key="frameInset" minX="148" width="32" height="30"/>
-                                                <state key="normal" title="Pork"/>
-                                                <connections>
-                                                    <action selector="porkButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aB6-MK-Egg"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Seafood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLJ-u3-3mv">
-                                        <frame key="frameInset" minY="50" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8f-K5-7VN">
-                                        <frame key="frameInset" minY="70" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWK-MP-g0k">
-                                                <frame key="frameInset" width="30" height="30"/>
-                                                <state key="normal" title="Fish"/>
-                                                <connections>
-                                                    <action selector="fishButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZQT-Bu-LP1"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTT-l7-uVa">
-                                                <frame key="frameInset" minX="30" width="34" height="30"/>
-                                                <state key="normal" title="Crab"/>
-                                                <connections>
-                                                    <action selector="crabButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="086-ph-q9b"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-RE-c5m">
-                                                <frame key="frameInset" minX="64" width="116" height="30"/>
-                                                <state key="normal" title="Shrimp"/>
-                                                <connections>
-                                                    <action selector="shrimpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cEw-xQ-Dgn"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dairy Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-oA-JyT">
-                                        <frame key="frameInset" minY="100" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WB9-Yj-4Pj">
-                                        <frame key="frameInset" minY="120" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ0-iS-q2h">
-                                                <frame key="frameInset" width="56" height="30"/>
-                                                <state key="normal" title="Cheese"/>
-                                                <connections>
-                                                    <action selector="cheeseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LYq-Ne-znY"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef1-RA-76J">
-                                                <frame key="frameInset" minX="56" width="43" height="30"/>
-                                                <state key="normal" title="Butter"/>
-                                                <connections>
-                                                    <action selector="butterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VwV-sI-Lco"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJi-u5-gsA">
-                                                <frame key="frameInset" minX="99" width="81" height="30"/>
-                                                <state key="normal" title="Sour Cream"/>
-                                                <connections>
-                                                    <action selector="sourCreamButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="naB-4m-k9D"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fruits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMG-27-365">
-                                        <frame key="frameInset" minY="150" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-Jb-e7l">
-                                        <frame key="frameInset" minY="170" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcT-go-lOp">
-                                                <frame key="frameInset" width="61" height="30"/>
-                                                <state key="normal" title="Apple"/>
-                                                <connections>
-                                                    <action selector="appleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2C6-Ck-aj8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EF2-jC-Rmm">
-                                                <frame key="frameInset" minX="61" width="68" height="30"/>
-                                                <state key="normal" title="Pineapple"/>
-                                                <connections>
-                                                    <action selector="pineappleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aEu-QB-C5g"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuh-de-bge">
-                                                <frame key="frameInset" minX="129" width="51" height="30"/>
-                                                <state key="normal" title="Orange"/>
-                                                <connections>
-                                                    <action selector="orangeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4NW-ZW-6hO"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Vegetables" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvP-az-anQ">
-                                        <frame key="frameInset" minY="200" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kH-41-uII">
-                                        <frame key="frameInset" minY="220" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUg-bi-jHk">
-                                                <frame key="frameInset" width="41" height="30"/>
-                                                <state key="normal" title="Onion"/>
-                                                <connections>
-                                                    <action selector="onionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7D-62-E5G"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0f8-GR-fdf">
-                                                <frame key="frameInset" minX="41" width="44" height="30"/>
-                                                <state key="normal" title="Carrot"/>
-                                                <connections>
-                                                    <action selector="carrotButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ndx-kr-7fx"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ps-f8-m8i">
-                                                <frame key="frameInset" minX="85" width="95" height="30"/>
-                                                <state key="normal" title="Green Pepper"/>
-                                                <connections>
-                                                    <action selector="greenPepperButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lql-r3-its"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Staple Foods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONo-9Q-0X8">
-                                        <frame key="frameInset" minY="250" width="180" height="20"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-DE-Lw1">
-                                        <frame key="frameInset" minY="270" width="180" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="md8-dh-wPZ">
-                                                <frame key="frameInset" width="30" height="30"/>
-                                                <state key="normal" title="Rice"/>
-                                                <connections>
-                                                    <action selector="riceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MIE-lR-EWM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mou-6E-f9o">
-                                                <frame key="frameInset" minX="30" width="41" height="30"/>
-                                                <state key="normal" title="Bread"/>
-                                                <connections>
-                                                    <action selector="breadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="83w-mH-Vd6"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzW-SN-4J1">
-                                                <frame key="frameInset" minX="71" width="109" height="30"/>
-                                                <state key="normal" title="Pasta"/>
-                                                <connections>
-                                                    <action selector="pastaButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JjA-Xd-teJ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SP-Yu-GrL">
-                                <frame key="frameInset" minX="318" minY="629" width="37" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
-                                <connections>
-                                    <action selector="doneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ER-sl-Ogw"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="900" y="-702"/>
-        </scene>
-        <!--Table View Controller-->
+        <!--Preview Ingredients Table View Controller-->
         <scene sceneID="lJW-dk-f4y">
             <objects>
-                <tableViewController id="pGz-I3-KkV" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PreviewIngredientsTableViewController" id="pGz-I3-KkV" customClass="PreviewIngredientsTableViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NgU-Zk-oES">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="6dI-ey-LZa">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Preview Ingreditents" id="7R3-dp-L7j">
-                                    <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="kPG-7s-nEp"/>
-                                    <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Aoz-2L-AHW"/>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gCY-kE-7CK">
-                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Continue"/>
+                            <connections>
+                                <action selector="continueButton:" destination="pGz-I3-KkV" eventType="touchUpInside" id="DCc-92-FhG"/>
+                            </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CW7-0E-vxb">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PreviewIngredientsCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewIngredientsCell" textLabel="xKr-Wd-awG" style="IBUITableViewCellStyleDefault" id="CW7-0E-vxb" customClass="PreviewIngredientsCell" customModule="RecipeBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CW7-0E-vxb" id="V7D-nR-mOk">
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xKr-Wd-awG">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="previewIngredientLabel" destination="xKr-Wd-awG" id="9PC-fa-zsX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -340,7 +122,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" textLabel="2FN-md-UOh" detailTextLabel="7I9-l2-ZDh" style="IBUITableViewCellStyleSubtitle" id="S54-oV-KzV" customClass="RecipeCell" customModule="RecipeBook" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" textLabel="2FN-md-UOh" detailTextLabel="z6j-nB-xPR" style="IBUITableViewCellStyleSubtitle" id="S54-oV-KzV" customClass="RecipeCell" customModule="RecipeBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S54-oV-KzV" id="xGf-55-G6m">
@@ -354,7 +136,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7I9-l2-ZDh">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z6j-nB-xPR">
                                             <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -393,11 +175,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q83-M9-9gH" id="0eh-W5-Fis">
-                                    <frame key="frameInset" width="375" height="108.5"/>
+                                    <frame key="frameInset" width="375" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Instruction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vs2-Nw-2FH">
-                                            <frame key="frameInset" minX="15" width="345" height="108.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Instruction" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vs2-Nw-2FH">
+                                            <frame key="frameInset" minX="15" width="345" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -436,7 +218,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjE-oB-SU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-900" y="71.514242878560722"/>
+            <point key="canvasLocation" x="-786" y="90"/>
         </scene>
     </scenes>
 </document>

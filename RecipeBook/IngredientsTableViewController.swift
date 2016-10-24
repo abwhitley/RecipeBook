@@ -48,7 +48,6 @@ class IngredientsTableViewController: UITableViewController {
         let recipe = recipes[(indexPath as NSIndexPath).row]
         
         cell.titleLabel.text = recipe.title
-        cell.
         
         
         return cell

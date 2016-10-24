@@ -9,87 +9,128 @@
 import UIKit
 
 class PreviewIngredientsTableViewController: UITableViewController {
-
+    
+    var ingredientsArray : [String] = []
+    var recipes: [Recipe] = []
+    var store: RecipeStore!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Get the height of the status bar
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
+        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
+        
+        var navBar = UINavigationBar()
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ingredientsArray.count
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Create an instance of UITableViewCell, with default appearance
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewIngredientsCell",
+                                                 for: indexPath) as! PreviewIngredientsCell
+        
+        // Set the text on the cell with the description of the item
+        // that is at the nth index of items, where n = row this cell
+        // will appear in on the tableview
+        let ingredient = ingredientsArray[(indexPath as NSIndexPath).row]
+        
+        cell.previewIngredientLabel.text = ingredient
+        
+        
         return cell
     }
-    */
+    
+    
+    
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     
+    
+    
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+        let item = ingredientsArray[(indexPath as NSIndexPath).row]
+        
+        
+        let title = "Delete \(item)?"
+        let message = "Are you sure you want to delete this item?"
+        
+        let ac = UIAlertController(title: title,
+                                   message: message,
+                                   preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
+                                         handler: { (action) -> Void in
+                                            // Remove the item from the store
+                                            var ingredientLocation = self.ingredientsArray.index(of: item)
+                                            self.ingredientsArray.remove(at: ingredientLocation!)
+                                            
+                                            // Also remove that row from the table view with an animation
+                                            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        })
+        ac.addAction(deleteAction)
+        
+        // Present the alert controller
+        present(ac, animated: true, completion: nil)
+     }
+    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    @IBAction func continueButton(_ sender: AnyObject) {
+        print(ingredientsArray)
+        print("Your Ingredient List Contains: \(ingredientsArray.joined(separator: ", "))")
+        store.fetchRecipes(ingredientList: ingredientsArray) {
+            (RecipeResult) -> Void in
+            
+            OperationQueue.main.addOperation {
+                
+                switch RecipeResult {
+                case let .success(RecipeResult):
+                    print("Successfully found \(RecipeResult.count) recipes.")
+                    for recipe in RecipeResult{
+                        self.recipes.append(recipe)
+                        print(recipe.id, recipe.title)
+                    }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tableViewController = storyboard.instantiateViewController(withIdentifier: "IngredientsTableViewController") as! IngredientsTableViewController
+                    tableViewController.recipes = self.recipes
+                    tableViewController.store = self.store
+                    tableViewController.instructionStore = InstructionStore()
+                    self.show(tableViewController, sender: self)
+                case let .failure(error):
+                    print("Error fetching recipes: \(error)")
+                }
+                
+            }
+            
+        }
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
+    
+    
 }
