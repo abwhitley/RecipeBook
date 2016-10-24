@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5PZ-n0-rGJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ingredient Table View Controller-->
+        <!--Ingredient List-->
         <scene sceneID="cvh-Pm-xXp">
             <objects>
                 <tableViewController id="qDF-NL-ppY" customClass="IngredientTableViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,19 +14,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SLY-Sc-L2s">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Continue"/>
-                        </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="bR9-vF-obl">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="0Yd-QH-j11" style="IBUITableViewCellStyleDefault" id="bR9-vF-obl" customClass="IngredientCell" customModule="RecipeBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bR9-vF-obl" id="dTC-9U-AMC">
-                                    <frame key="frameInset" width="336" height="43"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Yd-QH-j11">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ingredientLabel" destination="0Yd-QH-j11" id="TKe-F3-Ybv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -34,10 +41,25 @@
                             <outlet property="delegate" destination="qDF-NL-ppY" id="J07-Zd-fDs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Ingredient List" id="jl9-aP-ng5">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Udp-2P-ynF">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LzV-TN-0DE">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="countineButton:" destination="qDF-NL-ppY" eventType="touchUpInside" id="87V-4Z-cO4"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="continueButton:" destination="qDF-NL-ppY" id="sic-N8-Ffy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVJ-Oi-mKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-900" y="72"/>
+            <point key="canvasLocation" x="103" y="90"/>
         </scene>
         <!--Ingredients View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -263,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9" y="72"/>
+            <point key="canvasLocation" x="873" y="-549"/>
         </scene>
         <!--Ingredients Table View Controller-->
         <scene sceneID="pmf-b5-9mn">
@@ -309,7 +331,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbW-Hh-Axw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="86"/>
+            <point key="canvasLocation" x="1776.8" y="85.907046476761622"/>
         </scene>
         <!--Instuction Table View Controller-->
         <scene sceneID="7ZG-Me-Nwf">
@@ -349,7 +371,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwX-UZ-SpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1743.2" y="90.404797601199405"/>
+            <point key="canvasLocation" x="2682.4000000000001" y="90.404797601199405"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cOg-Gs-sMV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5PZ-n0-rGJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xpp-Zj-Tlb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qDF-NL-ppY" kind="relationship" relationship="rootViewController" id="9HE-zB-Fce"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjE-oB-SU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-900" y="71.514242878560722"/>
         </scene>
     </scenes>
 </document>

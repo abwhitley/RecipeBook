@@ -59,6 +59,7 @@ class IngredientsTableViewController: UITableViewController {
                 var id = recipe.id
                 instructionStore.fetchInstructions(id: id){
                     (AnalyzedInstructionResult) -> Void in
+                    OperationQueue.main.addOperation {
                     switch AnalyzedInstructionResult{
                     case let .success(AnalyzedInstructionResult):
                         print("Successfully found \(AnalyzedInstructionResult.count) recipes.")
@@ -72,7 +73,7 @@ class IngredientsTableViewController: UITableViewController {
                         self.show(recipeInstructionViewController, sender: self)
                     case let .failure(error):
                         print("Error fetching steps: \(error)")
-
+                        }
                     }
                 }
             }else {

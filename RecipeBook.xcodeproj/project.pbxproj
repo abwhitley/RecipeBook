@@ -106,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				E9FFEA171DAC187F00158498 /* IngredientsViewController.swift */,
-				E91862151DB6C628000E8173 /* IngredientsTableViewController.swift */,
 				E90FBFAB1DBD716C0050E18C /* IngredientTableViewController.swift */,
+				E91862151DB6C628000E8173 /* IngredientsTableViewController.swift */,
 				E92934AA1DB9488700C17696 /* InstructionTableViewController.swift */,
 			);
 			name = ViewControllers;
