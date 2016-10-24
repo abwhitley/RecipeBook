@@ -133,17 +133,17 @@ class IngredientTableViewController: UITableViewController {
         cell?.accessoryType = UITableViewCellAccessoryType.checkmark
     }
     
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        for ingredients in ingredientsArray{
-            if let ingredients = cell?.textLabel?.text{
-                var ingredientLocation = ingredientsArray.index(of: ingredients)
-                ingredientsArray.remove(at: ingredientLocation!)
-                cell?.accessoryType = UITableViewCellAccessoryType.none
-                
-            }
-        }
-    }
+//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        for ingredients in ingredientsArray{
+//            if let ingredients = cell?.textLabel?.text{
+//                var ingredientLocation = ingredientsArray.index(of: ingredients)
+//                ingredientsArray.remove(at: ingredientLocation!)
+//                cell?.accessoryType = UITableViewCellAccessoryType.none
+//                
+//            }
+//        }
+//    }
 
     @IBAction func countineButton(_ sender: AnyObject) {
         print(ingredientsArray)
