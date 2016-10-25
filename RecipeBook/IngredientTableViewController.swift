@@ -33,7 +33,13 @@ class IngredientTableViewController: UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        var sectionNames : [String] = getHeader(ingredient: ingredient)
+//        
+//        for header in sectionNames{
+//            sectionName = header
+//        }
         var sectionName : String
+        
         switch section {
         case 0:
             sectionName = "Meat"

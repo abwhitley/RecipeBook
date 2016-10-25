@@ -17,19 +17,11 @@ class PreviewIngredientsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Get the height of the status bar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 65
-        
-        var navBar = UINavigationBar()
-        
+        view.backgroundColor = UIColor.init(red: 180/255, green: 216/255, blue: 231/255, alpha: 1)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.init(red: 0, green: 128/255, blue: 128/255, alpha: 1)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +40,8 @@ class PreviewIngredientsTableViewController: UITableViewController {
         let ingredient = ingredientsArray[(indexPath as NSIndexPath).row]
         
         cell.previewIngredientLabel.text = ingredient
-        
+        cell.backgroundColor = UIColor.init(red: 180/255, green: 216/255, blue: 231/255, alpha: 1)
+
         
         return cell
     }

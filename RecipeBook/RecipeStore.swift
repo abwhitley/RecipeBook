@@ -8,7 +8,10 @@
 
 import UIKit
 
-
+enum ImageResult {
+    case success(UIImage)
+    case failure(Error)
+}
 //MARK: Class RecipeStore
 public class RecipeStore {
     var recipes: [Recipe] = []
@@ -47,5 +50,6 @@ public class RecipeStore {
         })
         task.resume()
     }
+    
     
 }
