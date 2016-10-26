@@ -13,6 +13,7 @@
 		E91861871DB4F657000E8173 /* RecipeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91861861DB4F657000E8173 /* RecipeInfo.swift */; };
 		E91862161DB6C628000E8173 /* IngredientsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91862151DB6C628000E8173 /* IngredientsTableViewController.swift */; };
 		E91862181DB6C76A000E8173 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91862171DB6C76A000E8173 /* RecipeCell.swift */; };
+		E91C949F1DBF98A90032DCFB /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91C949E1DBF98A90032DCFB /* ImageStore.swift */; };
 		E92934A71DB8FD6800C17696 /* AnalyzedRecipeInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92934A61DB8FD6800C17696 /* AnalyzedRecipeInstruction.swift */; };
 		E92934A91DB9033500C17696 /* InstructionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92934A81DB9033500C17696 /* InstructionStore.swift */; };
 		E92934AB1DB9488700C17696 /* InstructionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92934AA1DB9488700C17696 /* InstructionTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		E91861861DB4F657000E8173 /* RecipeInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeInfo.swift; sourceTree = "<group>"; };
 		E91862151DB6C628000E8173 /* IngredientsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewController.swift; sourceTree = "<group>"; };
 		E91862171DB6C76A000E8173 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		E91C949E1DBF98A90032DCFB /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		E92934A61DB8FD6800C17696 /* AnalyzedRecipeInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzedRecipeInstruction.swift; sourceTree = "<group>"; };
 		E92934A81DB9033500C17696 /* InstructionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionStore.swift; sourceTree = "<group>"; };
 		E92934AA1DB9488700C17696 /* InstructionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionTableViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				E965547A1DAE7F1A00A7AF17 /* RecipeStore.swift */,
+				E91C949E1DBF98A90032DCFB /* ImageStore.swift */,
 				E92934A81DB9033500C17696 /* InstructionStore.swift */,
 			);
 			name = Stores;
@@ -353,6 +356,7 @@
 				E92934A71DB8FD6800C17696 /* AnalyzedRecipeInstruction.swift in Sources */,
 				E91862161DB6C628000E8173 /* IngredientsTableViewController.swift in Sources */,
 				E9B1FC641DBD53B90044CA05 /* InstructionCell.swift in Sources */,
+				E91C949F1DBF98A90032DCFB /* ImageStore.swift in Sources */,
 				E9FA7CD61DBEC16900F269A8 /* IngredientModel.swift in Sources */,
 				E9FA7CD21DBE2A8400F269A8 /* PreviewIngredientsCell.swift in Sources */,
 				E91862181DB6C76A000E8173 /* RecipeCell.swift in Sources */,

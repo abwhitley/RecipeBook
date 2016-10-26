@@ -6,7 +6,7 @@
 //  Copyright © 2016 AustinsIronYard. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Recipe {
     var id : Int
@@ -16,6 +16,9 @@ class Recipe {
     var usedIngredientCount : Int
     var missedIngredientCount : Int
     var likes : Int
+    var imageKey: String {
+        return "recipe_\(id)"
+    }
     
     init (id : Int,
           title : String,

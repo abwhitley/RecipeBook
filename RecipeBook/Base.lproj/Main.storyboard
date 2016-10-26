@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,8 +71,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="ZKd-mb-foh">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Extra Ingredients" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ycL-xG-bDL">
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FR8-Vd-ZSe">
+                                    <connections>
+                                        <action selector="addIngredientButton:" destination="pGz-I3-KkV" eventType="touchUpInside" id="IBY-kW-C3Q"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ycL-xG-bDL" firstAttribute="width" secondItem="FR8-Vd-ZSe" secondAttribute="height" multiplier="11:1" id="24d-N7-9Ha"/>
+                            </constraints>
+                        </stackView>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gCY-kE-7CK">
-                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="102" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Continue"/>
                             <connections>
@@ -79,7 +100,7 @@
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PreviewIngredientsCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewIngredientsCell" textLabel="xKr-Wd-awG" style="IBUITableViewCellStyleDefault" id="CW7-0E-vxb" customClass="PreviewIngredientsCell" customModule="RecipeBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CW7-0E-vxb" id="V7D-nR-mOk">
                                     <frame key="frameInset" width="375" height="43"/>
@@ -104,50 +125,60 @@
                             <outlet property="delegate" destination="pGz-I3-KkV" id="5wt-me-iQ5"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="addIngredientsTextField" destination="ycL-xG-bDL" id="fIX-aI-LBv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfP-5y-RfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="90"/>
+            <point key="canvasLocation" x="966" y="90"/>
         </scene>
         <!--Ingredients Table View Controller-->
         <scene sceneID="pmf-b5-9mn">
             <objects>
                 <tableViewController storyboardIdentifier="IngredientsTableViewController" id="9ct-fR-HD4" customClass="IngredientsTableViewController" customModule="RecipeBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ho5-iT-Zf0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ho5-iT-Zf0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="54Q-G9-FyS">
-                            <rect key="frame" x="0.0" y="72" width="375" height="20"/>
+                            <rect key="frame" x="0.0" y="149" width="375" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" textLabel="2FN-md-UOh" detailTextLabel="z6j-nB-xPR" style="IBUITableViewCellStyleSubtitle" id="S54-oV-KzV" customClass="RecipeCell" customModule="RecipeBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" id="S54-oV-KzV" customClass="RecipeCell" customModule="RecipeBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="121"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S54-oV-KzV" id="xGf-55-G6m">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2FN-md-UOh">
-                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z6j-nB-xPR">
-                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gI9-pC-1Sh">
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NAI-ZF-Jen"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTh-Jl-BTg">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nTh-Jl-BTg" firstAttribute="width" secondItem="gI9-pC-1Sh" secondAttribute="width" multiplier="1:2" id="98D-im-aHJ"/>
+                                                <constraint firstItem="NAI-ZF-Jen" firstAttribute="width" secondItem="gI9-pC-1Sh" secondAttribute="width" multiplier="1:3" id="foS-xa-2Ft"/>
+                                            </constraints>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="gI9-pC-1Sh" secondAttribute="trailing" id="Ex1-I6-1BZ"/>
+                                        <constraint firstItem="gI9-pC-1Sh" firstAttribute="leading" secondItem="xGf-55-G6m" secondAttribute="leading" id="UkU-H6-zMh"/>
+                                        <constraint firstAttribute="bottom" secondItem="gI9-pC-1Sh" secondAttribute="bottom" id="dBm-U2-IHW"/>
+                                        <constraint firstItem="gI9-pC-1Sh" firstAttribute="top" secondItem="xGf-55-G6m" secondAttribute="top" id="fKj-UH-4RE"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="pictureView" destination="NAI-ZF-Jen" id="3rp-8I-ZA6"/>
                                     <outlet property="spinner" destination="54Q-G9-FyS" id="uZX-4A-zmY"/>
-                                    <outlet property="titleLabel" destination="2FN-md-UOh" id="tlm-cr-mqD"/>
+                                    <outlet property="titleLabel" destination="nTh-Jl-BTg" id="1HS-ih-17V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

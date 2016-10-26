@@ -10,7 +10,10 @@ import UIKit
 
 class RecipeCell: UITableViewCell{
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var pictureView: UIImageView!
+
     @IBOutlet var spinner: UIActivityIndicatorView!
+    var recipeID: Int? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +35,13 @@ class RecipeCell: UITableViewCell{
         else {
             spinner.startAnimating()
             titleLabel.text = nil
+        }
+    }
+    func updateWithImage(_ image: UIImage?){
+        if let imageToDisplay = image{
+            pictureView?.image = imageToDisplay
+        }else{
+            pictureView?.image = nil
         }
     }
 
